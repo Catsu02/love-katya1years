@@ -1,77 +1,90 @@
-/* ==========================
-   ДЛЯ КАТИ ❤️
-   script.js | Part 1
-========================== */
+// ======================================
+// Love Site Script v2
+// Часть 1
+// ======================================
 
 // Дата начала отношений
 const startDate = new Date("2025-08-13T00:00:00");
 
+// -------------------------
 // Таймер
+// -------------------------
+
 function updateTimer() {
 
-    const now = new Date();
+    const timer = document.getElementById("timer");
 
-    let diff = now - startDate;
+    if(!timer) return;
 
-    const days = Math.floor(diff / 1000 / 60 / 60 / 24);
+    let diff = Date.now() - startDate.getTime();
 
-    diff %= 1000 * 60 * 60 * 24;
+    const days = Math.floor(diff / 86400000);
 
-    const hours = Math.floor(diff / 1000 / 60 / 60);
+    diff %= 86400000;
 
-    diff %= 1000 * 60 * 60;
+    const hours = Math.floor(diff / 3600000);
 
-    const minutes = Math.floor(diff / 1000 / 60);
+    diff %= 3600000;
 
-    diff %= 1000 * 60;
+    const minutes = Math.floor(diff / 60000);
+
+    diff %= 60000;
 
     const seconds = Math.floor(diff / 1000);
 
-    document.getElementById("timer").innerHTML =
-        `❤️ Мы вместе уже <br><br>
+    timer.innerHTML = `
+        ❤️ Мы вместе уже <br><br>
+
         <b>${days}</b> дней
+
         <b>${hours}</b> часов
+
         <b>${minutes}</b> минут
-        <b>${seconds}</b> секунд`;
+
+        <b>${seconds}</b> секунд
+    `;
+
 }
 
 updateTimer();
 
 setInterval(updateTimer,1000);
 
-/* ==========================
-   Открытие письма
-========================== */
+// -------------------------
+// Письмо
+// -------------------------
 
-const button = document.getElementById("letterBtn");
+const letterBtn = document.getElementById("letterBtn");
 
 const letter = document.getElementById("letter");
 
-button.onclick = ()=>{
+if(letterBtn && letter){
 
-    if(letter.classList.contains("hidden")){
+    letterBtn.addEventListener("click",()=>{
 
-        letter.classList.remove("hidden");
+        letter.classList.toggle("hidden");
 
-        letter.scrollIntoView({
+        if(!letter.classList.contains("hidden")){
 
-            behavior:"smooth"
+            letter.scrollIntoView({
 
-        });
+                behavior:"smooth"
 
-    }else{
+            });
 
-        letter.classList.add("hidden");
+            explodeHearts();
 
-    }
+        }
+
+    });
 
 }
 
-/* ==========================
-   Сердечки
-========================== */
+// -------------------------
+// Сердечки
+// -------------------------
 
-function createHeart(){
+function createHeart(x=null,y=null){
 
     const heart = document.createElement("div");
 
@@ -79,11 +92,23 @@ function createHeart(){
 
     heart.innerHTML="❤";
 
-    heart.style.left=Math.random()*100+"vw";
+    if(x===null){
 
-    heart.style.fontSize=(18+Math.random()*30)+"px";
+        heart.style.left=Math.random()*100+"vw";
 
-    heart.style.animationDuration=(5+Math.random()*5)+"s";
+        heart.style.top="-40px";
+
+    }else{
+
+        heart.style.left=x+"px";
+
+        heart.style.top=y+"px";
+
+    }
+
+    heart.style.fontSize=(18+Math.random()*24)+"px";
+
+    heart.style.animationDuration=(4+Math.random()*3)+"s";
 
     document.body.appendChild(heart);
 
@@ -91,15 +116,68 @@ function createHeart(){
 
         heart.remove();
 
-    },10000);
+    },7000);
 
 }
 
-setInterval(createHeart,220);
+setInterval(()=>{
 
-/* ==========================
-   Плавное появление блоков
-========================== */
+    createHeart();
+
+},250);
+
+function explodeHearts(){
+
+    for(let i=0;i<80;i++){
+
+        setTimeout(()=>{
+
+            createHeart();
+
+        },i*25);
+
+    }
+
+}// ======================================
+// Love Site Script v2
+// Часть 2
+// ======================================
+
+// -------------------------
+// Галерея
+// -------------------------
+
+const photos = document.querySelectorAll(".photos img");
+
+photos.forEach(photo=>{
+
+    photo.addEventListener("click",()=>{
+
+        const overlay=document.createElement("div");
+
+        overlay.className="photo-overlay";
+
+        const img=document.createElement("img");
+
+        img.src=photo.src;
+
+        overlay.appendChild(img);
+
+        document.body.appendChild(overlay);
+
+        overlay.addEventListener("click",()=>{
+
+            overlay.remove();
+
+        });
+
+    });
+
+});
+
+// -------------------------
+// Плавное появление блоков
+// -------------------------
 
 const observer = new IntersectionObserver((entries)=>{
 
@@ -117,286 +195,27 @@ const observer = new IntersectionObserver((entries)=>{
 
 });
 
-document.querySelectorAll(".gallery,.love,#letter").forEach(el=>{
+document.querySelectorAll(".gallery,.love,#letter,#finalMessage").forEach(el=>{
 
     el.style.opacity="0";
 
-    el.style.transform="translateY(80px)";
+    el.style.transform="translateY(70px)";
 
     el.style.transition="1s";
 
     observer.observe(el);
 
-});/* ==========================
-   script.js | Part 2
-========================== */
-
-/* Увеличение фотографий */
-
-const photos = document.querySelectorAll(".photos img");
-
-photos.forEach(photo => {
-
-    photo.addEventListener("click", () => {
-
-        const overlay = document.createElement("div");
-
-        overlay.className = "photo-overlay";
-
-        const img = document.createElement("img");
-
-        img.src = photo.src;
-
-        overlay.appendChild(img);
-
-        document.body.appendChild(overlay);
-
-        overlay.addEventListener("click", () => {
-
-            overlay.remove();
-
-        });
-
-    });
-
 });
 
+// -------------------------
+// Кнопка наверх
+// -------------------------
 
-/* Параллакс */
+const topButton=document.createElement("button");
 
-document.addEventListener("mousemove", e => {
+topButton.id="topButton";
 
-    const x = (window.innerWidth / 2 - e.clientX) / 60;
-
-    const y = (window.innerHeight / 2 - e.clientY) / 60;
-
-    document.body.style.backgroundPosition = `${x}px ${y}px`;
-
-});
-
-
-/* Подсветка кнопки */
-
-const loveButton = document.getElementById("letterBtn");
-
-loveButton.addEventListener("mouseenter", () => {
-
-    loveButton.style.boxShadow =
-        "0 0 40px rgba(255,80,180,.8)";
-
-});
-
-loveButton.addEventListener("mouseleave", () => {
-
-    loveButton.style.boxShadow = "";
-
-});
-
-
-/* Дождь из сердечек */
-
-function heartExplosion() {
-
-    for(let i = 0; i < 50; i++) {
-
-        setTimeout(createHeart, i * 70);
-
-    }
-
-}
-
-loveButton.addEventListener("click", heartExplosion);
-
-
-/* Красивое появление карточек */
-
-const cards = document.querySelectorAll(".card");
-
-cards.forEach((card,index)=>{
-
-    card.style.opacity="0";
-
-    card.style.transform="translateY(50px)";
-
-    card.style.transition=".7s";
-
-    setTimeout(()=>{
-
-        card.style.opacity="1";
-
-        card.style.transform="translateY(0)";
-
-    },700+index*150);
-
-});/* ==========================
-   script.js | Part 3
-========================== */
-
-/* Звёзды */
-
-function createStar(){
-
-    const star = document.createElement("div");
-
-    star.className = "star";
-
-    star.style.left = Math.random()*100 + "vw";
-
-    star.style.top = Math.random()*100 + "vh";
-
-    star.style.animationDelay = Math.random()*5 + "s";
-
-    document.body.appendChild(star);
-
-}
-
-for(let i=0;i<120;i++){
-
-    createStar();
-
-}
-
-
-/* Печатающийся текст */
-
-const subtitle = document.querySelector(".subtitle");
-
-const originalText = subtitle.innerText;
-
-subtitle.innerText="";
-
-let index = 0;
-
-function typeWriter(){
-
-    if(index < originalText.length){
-
-        subtitle.innerHTML += originalText.charAt(index);
-
-        index++;
-
-        setTimeout(typeWriter,40);
-
-    }
-
-}
-
-setTimeout(typeWriter,600);
-
-
-/* Плавное масштабирование фотографий */
-
-photos.forEach(photo=>{
-
-    photo.addEventListener("mouseenter",()=>{
-
-        photo.style.transform="scale(1.05) rotate(1deg)";
-
-    });
-
-    photo.addEventListener("mouseleave",()=>{
-
-        photo.style.transform="scale(1)";
-
-    });
-
-});
-
-
-/* Музыка */
-
-const music = new Audio("music.mp3");
-
-music.loop = true;
-
-let musicStarted = false;
-
-document.body.addEventListener("click",()=>{
-
-    if(!musicStarted){
-
-        music.play().catch(()=>{});
-
-        musicStarted = true;
-
-    }
-
-},{once:true});
-
-
-/* Плавное появление страницы */
-
-document.body.style.opacity = "0";
-
-window.addEventListener("load",()=>{
-
-    document.body.style.transition = "1.5s";
-
-    document.body.style.opacity = "1";
-
-});/* ==========================
-   Звёзды
-========================== */
-
-.star{
-
-position:fixed;
-
-width:2px;
-
-height:2px;
-
-background:white;
-
-border-radius:50%;
-
-opacity:.8;
-
-animation:twinkle 3s infinite;
-
-pointer-events:none;
-
-z-index:0;
-
-}
-
-@keyframes twinkle{
-
-0%{
-
-opacity:.2;
-
-transform:scale(1);
-
-}
-
-50%{
-
-opacity:1;
-
-transform:scale(2);
-
-}
-
-100%{
-
-opacity:.2;
-
-transform:scale(1);
-
-}
-
-}/* ==========================
-   script.js | Part 4
-========================== */
-
-/* Кнопка "Наверх" */
-
-const topButton = document.createElement("button");
-
-topButton.innerHTML = "❤️";
-
-topButton.id = "topButton";
+topButton.innerHTML="❤️";
 
 document.body.appendChild(topButton);
 
@@ -428,24 +247,66 @@ window.addEventListener("scroll",()=>{
 
     }
 
+});// ======================================
+// Love Site Script v2
+// Часть 3
+// ======================================
+
+// -------------------------
+// Плавное появление страницы
+// -------------------------
+
+window.addEventListener("load",()=>{
+
+    document.body.style.opacity="0";
+
+    setTimeout(()=>{
+
+        document.body.style.transition="opacity 1.2s";
+
+        document.body.style.opacity="1";
+
+    },100);
+
 });
 
+// -------------------------
+// Эффект движения заголовка
+// -------------------------
 
-/* Подсветка карточек */
+const title=document.querySelector(".hero h1");
 
-const reasons=document.querySelectorAll(".card");
+if(title){
 
-reasons.forEach(card=>{
+    document.addEventListener("mousemove",(e)=>{
 
-    card.addEventListener("mousemove",e=>{
+        const x=(window.innerWidth/2-e.clientX)/40;
 
-        const x=e.offsetX;
+        const y=(window.innerHeight/2-e.clientY)/40;
 
-        const y=e.offsetY;
+        title.style.transform=`translate(${x}px,${y}px)`;
+
+    });
+
+}
+
+// -------------------------
+// Подсветка карточек
+// -------------------------
+
+document.querySelectorAll(".card").forEach(card=>{
+
+    card.addEventListener("mousemove",(e)=>{
+
+        const rect=card.getBoundingClientRect();
+
+        const x=e.clientX-rect.left;
+
+        const y=e.clientY-rect.top;
 
         card.style.background=
         `radial-gradient(circle at ${x}px ${y}px,
-        rgba(255,120,180,.25),
+        rgba(255,120,180,.35),
         rgba(255,255,255,.08))`;
 
     });
@@ -458,84 +319,130 @@ reasons.forEach(card=>{
 
 });
 
+// -------------------------
+// Финальная кнопка
+// -------------------------
 
-/* Пульсация заголовка */
+const finalBtn=document.getElementById("loveExplosion");
 
-const title=document.querySelector(".hero h1");
+if(finalBtn){
 
-setInterval(()=>{
+    finalBtn.addEventListener("click",()=>{
 
-    title.animate([
+        explodeHearts();
 
-        {
+        finalBtn.innerHTML="❤️ Я люблю тебя бесконечно ❤️";
 
-            transform:"scale(1)"
-
-        },
-
-        {
-
-            transform:"scale(1.03)"
-
-        },
-
-        {
-
-            transform:"scale(1)"
-
-        }
-
-    ],{
-
-        duration:2500
+        finalBtn.disabled=true;
 
     });
 
-},2600);
+}// ======================================
+// Love Site Script v2
+// Часть 4
+// ======================================
 
+// -------------------------
+// Звёзды
+// -------------------------
 
-/* Случайные сердечки при движении мыши */
+function createStar(){
 
-document.addEventListener("mousemove",e=>{
+    const star=document.createElement("div");
 
-    if(Math.random()>0.95){
+    star.className="star";
 
-        const heart=document.createElement("div");
+    star.style.left=Math.random()*100+"vw";
 
-        heart.className="heart";
+    star.style.top=Math.random()*100+"vh";
 
-        heart.innerHTML="❤";
+    star.style.animationDelay=Math.random()*4+"s";
 
-        heart.style.left=e.clientX+"px";
+    document.body.appendChild(star);
 
-        heart.style.top=e.clientY+"px";
+}
 
-        heart.style.fontSize="16px";
+for(let i=0;i<120;i++){
 
-        heart.style.animationDuration="3s";
+    createStar();
 
-        document.body.appendChild(heart);
+}
 
-        setTimeout(()=>{
+// -------------------------
+// Сердечки возле курсора
+// -------------------------
 
-            heart.remove();
+document.addEventListener("mousemove",(e)=>{
 
-        },3000);
+    if(Math.random()>0.97){
 
-    }/* ==========================
-   Финальная анимация
-========================== */
-
-const finalButton = document.getElementById("loveExplosion");
-
-finalButton.addEventListener("click",()=>{
-
-    for(let i=0;i<300;i++){
-
-        setTimeout(createHeart,i*15);
+        createHeart(e.clientX,e.clientY);
 
     }
 
-    finalButton.innerHTML="❤️ Я люблю тебя бесконечно ❤️";
+});
+
+// -------------------------
+// Лёгкая пульсация заголовка
+// -------------------------
+
+if(title){
+
+setInterval(()=>{
+
+title.animate([
+
+{
+
+transform:"scale(1)"
+
+},
+
+{
+
+transform:"scale(1.03)"
+
+},
+
+{
+
+transform:"scale(1)"
+
+}
+
+],{
+
+duration:2500
 
 });
+
+},3000);
+
+}
+
+// -------------------------
+// Автоматическая проверка изображений
+// -------------------------
+
+photos.forEach(photo=>{
+
+photo.onerror=()=>{
+
+photo.src="https://placehold.co/400x600?text=❤️";
+
+};
+
+});
+
+// -------------------------
+// Сообщение в консоли
+// -------------------------
+
+console.log("%c❤️ Для Кати ❤️",
+"font-size:26px;color:#ff4f92;font-weight:bold;");
+
+console.log("Сайт успешно загружен ❤️");
+
+// ======================================
+// Конец файла
+// ======================================
