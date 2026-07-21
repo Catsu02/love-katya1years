@@ -685,4 +685,66 @@ z-index:9999;
 
 transform:scale(1.1);
 
+}/* ==========================
+   Финальный блок
+========================== */
+
+#finalMessage{
+
+padding:120px 20px;
+
+text-align:center;
+
+position:relative;
+
+z-index:10;
+
+}
+
+#finalMessage h2{
+
+font-size:60px;
+
+margin-bottom:25px;
+
+text-shadow:0 0 30px hotpink;
+
+}
+
+#finalMessage p{
+
+font-size:24px;
+
+max-width:800px;
+
+margin:auto;
+
+line-height:1.8;
+
+margin-bottom:40px;
+
+}
+
+#loveExplosion{
+
+padding:22px 60px;
+
+font-size:22px;
+
+border-radius:100px;
+
+background:linear-gradient(135deg,#ff4f92,#ff7cc4);
+
+cursor:pointer;
+
+transition:.4s;
+
+}
+
+#loveExplosion:hover{
+
+transform:scale(1.08);
+
+box-shadow:0 0 40px hotpink;
+
 }
