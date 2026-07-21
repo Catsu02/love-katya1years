@@ -14,3 +14,94 @@ button{padding:16px 34px;border:none;border-radius:50px;background:#ff4f92;color
 .card{background:#ffffff12;padding:25px;border-radius:18px}
 .heart{position:fixed;top:-20px;color:#ff5fa2;animation:fall linear forwards}
 @keyframes fall{to{transform:translateY(110vh);opacity:0}}
+<section class="love">
+
+<h2>
+100 причин, почему я люблю тебя ❤️
+</h2>
+
+<div class="cards">
+
+<div class="card">❤️ Потому что ты делаешь меня счастливее.</div>
+
+<div class="card">🌹 Потому что твоя улыбка — самая красивая.</div>
+
+<div class="card">🥹 Потому что рядом с тобой спокойно.</div>
+
+<div class="card">💖 Потому что ты понимаешь меня.</div>
+
+<div class="card">✨ Потому что ты всегда в моих мыслях.</div>
+
+<div class="card">🌙 Потому что ты делаешь обычные дни особенными.</div>
+
+<div class="card">❤️ Потому что рядом с тобой я настоящий.</div>
+
+<div class="card">💌 Потому что я люблю каждую минуту рядом с тобой.</div>
+
+</div>
+
+</section>
+
+<section class="final">
+
+<h2>
+
+Катя ❤️
+
+</h2>
+
+<p>
+
+Спасибо тебе за всё.
+
+За любовь.
+
+За заботу.
+
+За поддержку.
+
+Я хочу пройти рядом с тобой ещё очень много счастливых дней.
+
+И чтобы каждый раз, когда ты откроешь этот сайт,
+
+ты вспоминала,
+
+как сильно я тебя люблю.
+
+</p>
+
+<button id="loveButton">
+
+Я люблю тебя ❤️
+
+</button>
+
+</section>
+
+<footer>
+
+<p>
+
+Сделано с любовью специально для Кати ❤️
+
+</p>
+
+</footer>
+
+<div id="photoViewer">
+
+<img id="viewerImage" src="">
+
+</div>
+
+<audio id="music" loop>
+
+<source src="music.mp3" type="audio/mpeg">
+
+</audio>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
