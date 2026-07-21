@@ -66,19 +66,23 @@ const startButton = document.getElementById("startButton");
 
 const letter = document.getElementById("letter");
 
-startButton.addEventListener("click",()=>{
+if(startButton && letter){
 
-    letter.classList.remove("hidden");
+    startButton.addEventListener("click",()=>{
 
-    letter.scrollIntoView({
+        letter.classList.remove("hidden");
 
-        behavior:"smooth"
+        letter.scrollIntoView({
+
+            behavior:"smooth"
+
+        });
+
+        heartExplosion();
 
     });
 
-    heartExplosion();
-
-});
+}
 
 // ----------------------
 // Сердечки
@@ -195,24 +199,27 @@ const viewer=document.getElementById("photoViewer");
 
 const viewerImage=document.getElementById("viewerImage");
 
-document.querySelectorAll(".photo img").forEach(img=>{
+if(viewer && viewerImage){
 
-    img.addEventListener("click",()=>{
+    document.querySelectorAll(".photo img").forEach(img=>{
 
-        viewer.classList.add("active");
+        img.addEventListener("click",()=>{
 
-        viewerImage.src=img.src;
+            viewer.classList.add("active");
+
+            viewerImage.src=img.src;
+
+        });
 
     });
 
-});
+    viewer.addEventListener("click",()=>{
 
-viewer.addEventListener("click",()=>{
+        viewer.classList.remove("active");
 
-    viewer.classList.remove("active");
+    });
 
-});
-
+}
 // ----------------------
 // Подсветка карточек
 // ----------------------
