@@ -522,6 +522,20 @@ document.addEventListener("mousemove",e=>{
 
         },3000);
 
+    }/* ==========================
+   Финальная анимация
+========================== */
+
+const finalButton = document.getElementById("loveExplosion");
+
+finalButton.addEventListener("click",()=>{
+
+    for(let i=0;i<300;i++){
+
+        setTimeout(createHeart,i*15);
+
     }
+
+    finalButton.innerHTML="❤️ Я люблю тебя бесконечно ❤️";
 
 });
