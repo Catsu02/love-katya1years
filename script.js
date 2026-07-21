@@ -386,4 +386,142 @@ transform:scale(1);
 
 }
 
-}
+}/* ==========================
+   script.js | Part 4
+========================== */
+
+/* Кнопка "Наверх" */
+
+const topButton = document.createElement("button");
+
+topButton.innerHTML = "❤️";
+
+topButton.id = "topButton";
+
+document.body.appendChild(topButton);
+
+topButton.addEventListener("click",()=>{
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+});
+
+window.addEventListener("scroll",()=>{
+
+    if(window.scrollY>500){
+
+        topButton.style.opacity="1";
+
+        topButton.style.pointerEvents="auto";
+
+    }else{
+
+        topButton.style.opacity="0";
+
+        topButton.style.pointerEvents="none";
+
+    }
+
+});
+
+
+/* Подсветка карточек */
+
+const reasons=document.querySelectorAll(".card");
+
+reasons.forEach(card=>{
+
+    card.addEventListener("mousemove",e=>{
+
+        const x=e.offsetX;
+
+        const y=e.offsetY;
+
+        card.style.background=
+        `radial-gradient(circle at ${x}px ${y}px,
+        rgba(255,120,180,.25),
+        rgba(255,255,255,.08))`;
+
+    });
+
+    card.addEventListener("mouseleave",()=>{
+
+        card.style.background="rgba(255,255,255,.08)";
+
+    });
+
+});
+
+
+/* Пульсация заголовка */
+
+const title=document.querySelector(".hero h1");
+
+setInterval(()=>{
+
+    title.animate([
+
+        {
+
+            transform:"scale(1)"
+
+        },
+
+        {
+
+            transform:"scale(1.03)"
+
+        },
+
+        {
+
+            transform:"scale(1)"
+
+        }
+
+    ],{
+
+        duration:2500
+
+    });
+
+},2600);
+
+
+/* Случайные сердечки при движении мыши */
+
+document.addEventListener("mousemove",e=>{
+
+    if(Math.random()>0.95){
+
+        const heart=document.createElement("div");
+
+        heart.className="heart";
+
+        heart.innerHTML="❤";
+
+        heart.style.left=e.clientX+"px";
+
+        heart.style.top=e.clientY+"px";
+
+        heart.style.fontSize="16px";
+
+        heart.style.animationDuration="3s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+
+            heart.remove();
+
+        },3000);
+
+    }
+
+});
