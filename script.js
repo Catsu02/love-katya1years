@@ -186,11 +186,11 @@ const observer=new IntersectionObserver((entries)=>{
 document.querySelectorAll("section").forEach(section=>{
 
     section.classList.add("fade");
+    section.classList.add("show");
 
     observer.observe(section);
 
 });
-
 // ----------------------
 // Галерея
 // ----------------------
