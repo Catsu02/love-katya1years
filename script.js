@@ -265,7 +265,7 @@ if(loveButton){
 
         heartExplosion();
 
-        loveButton.innerHTML="❤️ Я люблю тебя бесконечно ❤️";
+        loveButton.innerHTML="❤️ Я люблю тебя очень сильно ❤️";
 
         loveButton.disabled=true;
 
