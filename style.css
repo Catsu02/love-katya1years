@@ -1,16 +1,808 @@
+/* ======================================
+   LOVE SITE V2
+   style.css | Часть 1
+====================================== */
 
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:#0f1025;color:#fff;overflow-x:hidden}
-.bg{position:fixed;inset:0;background:radial-gradient(circle,#4c1d95,#0f1025);z-index:-2}
-.hero,.gallery,.love,#letter{max-width:1100px;margin:auto;padding:80px 20px;text-align:center}
-h1{font-size:58px;margin-bottom:20px}
-#timer{font-size:28px;margin:30px 0}
-button{padding:16px 34px;border:none;border-radius:50px;background:#ff4f92;color:#fff;font-size:18px;cursor:pointer}
-.hidden{display:none}
-#letter{background:#ffffff10;border-radius:20px}
-.photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
-.photos img{width:100%;border-radius:16px}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;margin-top:30px}
-.card{background:#ffffff12;padding:25px;border-radius:18px}
-.heart{position:fixed;top:-20px;color:#ff5fa2;animation:fall linear forwards}
-@keyframes fall{to{transform:translateY(110vh);opacity:0}}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:'Poppins',sans-serif;
+
+background:
+radial-gradient(circle at top,#5b2b90 0%,#1b1238 45%,#090714 100%);
+
+color:white;
+
+overflow-x:hidden;
+
+min-height:100vh;
+
+}
+
+/* Скролл */
+
+::-webkit-scrollbar{
+
+width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#10091d;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#ff4f92;
+
+border-radius:50px;
+
+}
+
+/* Звёзды */
+
+#stars{
+
+position:fixed;
+
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+pointer-events:none;
+
+z-index:0;
+
+}
+
+/* Сердечки */
+
+#hearts{
+
+position:fixed;
+
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+pointer-events:none;
+
+z-index:1;
+
+}
+
+/* Главный экран */
+
+.hero{
+
+min-height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+padding:40px;
+
+position:relative;
+
+z-index:5;
+
+}
+
+/* Стеклянный блок */
+
+.glass{
+
+width:100%;
+
+max-width:900px;
+
+padding:60px;
+
+border-radius:35px;
+
+background:rgba(255,255,255,.08);
+
+border:1px solid rgba(255,255,255,.15);
+
+backdrop-filter:blur(20px);
+
+box-shadow:
+
+0 20px 80px rgba(0,0,0,.35);
+
+text-align:center;
+
+}
+
+/* Заголовок */
+
+.hero h1{
+
+font-size:68px;
+
+line-height:1.1;
+
+margin-bottom:25px;
+
+text-shadow:
+
+0 0 20px rgba(255,80,170,.5);
+
+}
+
+.hero p{
+
+font-size:22px;
+
+line-height:1.8;
+
+opacity:.9;
+
+}
+
+/* Таймер */
+
+#timer{
+
+margin-top:45px;
+
+font-size:32px;
+
+font-weight:600;
+
+color:#ffd3e8;
+
+}
+
+/* Кнопки */
+
+button{
+
+margin-top:40px;
+
+padding:18px 50px;
+
+border:none;
+
+border-radius:60px;
+
+cursor:pointer;
+
+font-size:20px;
+
+font-weight:600;
+
+color:white;
+
+background:
+
+linear-gradient(135deg,#ff4f92,#ff82c8);
+
+transition:.4s;
+
+box-shadow:
+
+0 15px 40px rgba(255,70,150,.4);
+
+}
+
+button:hover{
+
+transform:translateY(-6px);
+
+box-shadow:
+
+0 20px 60px rgba(255,70,150,.6);
+
+}
+
+/* Секции */
+
+section{
+
+padding:120px 8%;
+
+position:relative;
+
+z-index:5;
+
+}
+
+/* Заголовки */
+
+section h2{
+
+font-size:52px;
+
+text-align:center;
+
+margin-bottom:60px;
+
+}
+
+/* Письмо */
+
+#letter p{
+
+font-size:22px;
+
+line-height:2;
+
+text-align:center;
+
+}
+
+.hidden{
+
+display:none;
+
+}
+/* ======================================
+   Галерея
+====================================== */
+
+.gallery{
+
+text-align:center;
+
+}
+
+.photos{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(auto-fit,minmax(280px,1fr));
+
+gap:35px;
+
+margin-top:50px;
+
+}
+
+.photo{
+
+position:relative;
+
+overflow:hidden;
+
+border-radius:25px;
+
+background:rgba(255,255,255,.08);
+
+border:1px solid rgba(255,255,255,.12);
+
+transition:.45s;
+
+cursor:pointer;
+
+}
+
+.photo:hover{
+
+transform:translateY(-10px);
+
+box-shadow:
+
+0 25px 70px rgba(255,80,170,.35);
+
+}
+
+.photo img{
+
+display:block;
+
+width:100%;
+
+height:430px;
+
+object-fit:cover;
+
+transition:.45s;
+
+}
+
+.photo:hover img{
+
+transform:scale(1.08);
+
+}
+
+.photo span{
+
+position:absolute;
+
+right:20px;
+
+bottom:20px;
+
+font-size:32px;
+
+background:rgba(0,0,0,.35);
+
+padding:10px;
+
+border-radius:50%;
+
+backdrop-filter:blur(10px);
+
+}
+
+/* ======================================
+   Карточки
+====================================== */
+
+.cards{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(auto-fit,minmax(260px,1fr));
+
+gap:30px;
+
+}
+
+.card{
+
+padding:35px;
+
+border-radius:25px;
+
+background:rgba(255,255,255,.08);
+
+border:1px solid rgba(255,255,255,.12);
+
+backdrop-filter:blur(12px);
+
+font-size:20px;
+
+line-height:1.8;
+
+transition:.4s;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+background:rgba(255,255,255,.12);
+
+box-shadow:
+
+0 20px 60px rgba(255,90,170,.3);
+
+}
+
+/* ======================================
+   Финальный блок
+====================================== */
+
+.final{
+
+text-align:center;
+
+}
+
+.final p{
+
+font-size:22px;
+
+line-height:2;
+
+max-width:900px;
+
+margin:auto;
+
+}
+
+#loveButton{
+
+margin-top:50px;
+
+}
+
+/* ======================================
+   Просмотр фото
+====================================== */
+
+#photoViewer{
+
+position:fixed;
+
+left:0;
+
+top:0;
+
+width:100%;
+
+height:100%;
+
+background:rgba(0,0,0,.95);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+opacity:0;
+
+pointer-events:none;
+
+transition:.35s;
+
+z-index:9999;
+
+}
+
+#photoViewer.active{
+
+opacity:1;
+
+pointer-events:auto;
+
+}
+
+#viewerImage{
+
+max-width:90%;
+
+max-height:90%;
+
+border-radius:25px;
+
+box-shadow:
+
+0 20px 80px rgba(255,255,255,.2);
+
+}
+
+/* ======================================
+   Футер
+====================================== */
+
+footer{
+
+padding:70px;
+
+text-align:center;
+
+font-size:18px;
+
+opacity:.8;
+
+}
+/* ======================================
+   LOVE SITE V2
+   style.css | Часть 3
+====================================== */
+
+/* Плавное появление */
+
+.fade{
+
+opacity:0;
+
+transform:translateY(70px);
+
+transition:1s;
+
+}
+
+.fade.show{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+/* Звезды */
+
+.star{
+
+position:fixed;
+
+width:2px;
+
+height:2px;
+
+background:white;
+
+border-radius:50%;
+
+opacity:.8;
+
+animation:twinkle 3s infinite;
+
+pointer-events:none;
+
+z-index:0;
+
+}
+
+@keyframes twinkle{
+
+0%{
+
+opacity:.2;
+
+transform:scale(1);
+
+}
+
+50%{
+
+opacity:1;
+
+transform:scale(2);
+
+}
+
+100%{
+
+opacity:.2;
+
+transform:scale(1);
+
+}
+
+}
+
+/* Сердечки */
+
+.heart{
+
+position:fixed;
+
+top:-40px;
+
+color:#ff5ca5;
+
+pointer-events:none;
+
+user-select:none;
+
+z-index:2;
+
+animation:heartFall linear forwards;
+
+}
+
+@keyframes heartFall{
+
+0%{
+
+transform:translateY(-50px) rotate(0deg);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(110vh) rotate(360deg);
+
+opacity:0;
+
+}
+
+}
+
+/* Красивое свечение */
+
+.hero::before{
+
+content:"";
+
+position:absolute;
+
+width:550px;
+
+height:550px;
+
+border-radius:50%;
+
+background:#ff4f92;
+
+filter:blur(180px);
+
+opacity:.18;
+
+top:-150px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+z-index:-1;
+
+}
+
+.gallery::before{
+
+content:"";
+
+position:absolute;
+
+width:350px;
+
+height:350px;
+
+background:#8b5cf6;
+
+filter:blur(160px);
+
+opacity:.15;
+
+right:-100px;
+
+top:120px;
+
+border-radius:50%;
+
+}
+
+.love::before{
+
+content:"";
+
+position:absolute;
+
+width:350px;
+
+height:350px;
+
+background:#ff6fb7;
+
+filter:blur(170px);
+
+opacity:.15;
+
+left:-100px;
+
+bottom:50px;
+
+border-radius:50%;
+
+}
+
+/* Анимация кнопок */
+
+button:active{
+
+transform:scale(.96);
+
+}
+
+/* Адаптация */
+
+@media(max-width:900px){
+
+.hero h1{
+
+font-size:46px;
+
+}
+
+.hero p{
+
+font-size:18px;
+
+}
+
+#timer{
+
+font-size:24px;
+
+}
+
+.glass{
+
+padding:35px;
+
+}
+
+section h2{
+
+font-size:38px;
+
+}
+
+.photo img{
+
+height:320px;
+
+}
+
+.final p{
+
+font-size:18px;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.hero{
+
+padding:20px;
+
+}
+
+.hero h1{
+
+font-size:34px;
+
+}
+
+.hero p{
+
+font-size:16px;
+
+}
+
+#timer{
+
+font-size:20px;
+
+}
+
+button{
+
+width:100%;
+
+font-size:18px;
+
+}
+
+.photos{
+
+grid-template-columns:1fr;
+
+}
+
+.cards{
+
+grid-template-columns:1fr;
+
+}
+
+.photo img{
+
+height:280px;
+
+}
+
+footer{
+
+font-size:16px;
+
+padding:40px 20px;
+
+}
