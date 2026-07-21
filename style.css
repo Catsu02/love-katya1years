@@ -1,0 +1,644 @@
+/* ==========================
+   ДЛЯ КАТИ ❤️
+   Part 1
+========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:
+    radial-gradient(circle at top,#40204f,#170d2c 35%,#090812 100%);
+
+    color:white;
+
+    overflow-x:hidden;
+
+    min-height:100vh;
+}
+
+/* Скролл */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#140c23;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#ff4f92;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#ff76ad;
+
+}
+
+/* Летающие сердечки */
+
+#hearts{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:1;
+
+}
+
+/* Главный экран */
+
+.hero{
+
+    position:relative;
+
+    z-index:5;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+    min-height:100vh;
+
+    padding:40px;
+
+}
+
+.hero h1{
+
+    font-size:68px;
+
+    line-height:1.1;
+
+    font-weight:700;
+
+    text-shadow:
+
+    0 0 20px rgba(255,70,130,.7),
+
+    0 0 50px rgba(255,70,130,.4);
+
+}
+
+.subtitle{
+
+    margin-top:25px;
+
+    font-size:23px;
+
+    opacity:.9;
+
+    max-width:750px;
+
+    line-height:1.8;
+
+}
+
+/* Таймер */
+
+#timer{
+
+    margin-top:45px;
+
+    font-size:34px;
+
+    font-weight:600;
+
+    color:#ffd3e8;
+
+    text-shadow:0 0 15px hotpink;
+
+}
+
+/* Кнопка */
+
+button{
+
+    margin-top:40px;
+
+    padding:18px 45px;
+
+    border:none;
+
+    border-radius:60px;
+
+    cursor:pointer;
+
+    font-size:19px;
+
+    font-weight:600;
+
+    color:white;
+
+    background:linear-gradient(135deg,#ff4b8d,#ff77c5);
+
+    box-shadow:
+
+    0 10px 40px rgba(255,80,160,.4);
+
+    transition:.35s;
+
+}
+
+button:hover{
+
+    transform:translateY(-5px) scale(1.05);
+
+    box-shadow:
+
+    0 20px 60px rgba(255,80,160,.6);
+
+}
+
+/* Письмо */
+
+.hidden{
+
+    display:none;
+
+}
+
+#letter{
+
+    position:relative;
+
+    z-index:5;
+
+    max-width:1000px;
+
+    margin:120px auto;
+
+    padding:55px;
+
+    border-radius:30px;
+
+    backdrop-filter:blur(18px);
+
+    background:rgba(255,255,255,.07);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    box-shadow:
+
+    0 20px 80px rgba(0,0,0,.35);
+
+}
+
+#letter h2{
+
+    text-align:center;
+
+    font-size:42px;
+
+    margin-bottom:35px;
+
+}
+
+#letter p{
+
+    font-size:21px;
+
+    line-height:2;
+
+    text-align:center;
+
+}
+
+/* Галерея */
+
+.gallery{
+
+    position:relative;
+
+    z-index:5;
+
+    padding:120px 8%;
+
+}
+
+.gallery h2{
+
+    font-size:48px;
+
+    text-align:center;
+
+    margin-bottom:70px;
+
+}
+
+.photos{
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:35px;
+
+}
+
+.photos img{
+
+    width:100%;
+
+    border-radius:24px;
+
+    transition:.45s;
+
+    cursor:pointer;
+
+    box-shadow:
+
+    0 20px 50px rgba(0,0,0,.35);
+
+}
+
+.photos img:hover{
+
+    transform:
+
+    scale(1.05)
+
+    rotate(1deg);
+
+    box-shadow:
+
+    0 25px 80px rgba(255,90,170,.35);
+
+}/* ==========================
+   PART 2
+========================== */
+
+/* Блок "Почему я тебя люблю" */
+
+.love{
+
+    position:relative;
+
+    z-index:5;
+
+    padding:120px 8%;
+
+}
+
+.love h2{
+
+    text-align:center;
+
+    font-size:50px;
+
+    margin-bottom:70px;
+
+}
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:30px;
+
+}
+
+.card{
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    backdrop-filter:blur(12px);
+
+    border-radius:25px;
+
+    padding:35px;
+
+    font-size:20px;
+
+    line-height:1.7;
+
+    transition:.4s;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+    background:rgba(255,255,255,.12);
+
+    box-shadow:0 25px 70px rgba(255,90,170,.35);
+
+}
+
+/* Футер */
+
+footer{
+
+    position:relative;
+
+    z-index:5;
+
+    padding:80px 20px;
+
+    text-align:center;
+
+    font-size:24px;
+
+    color:#ffd9eb;
+
+}
+
+/* Анимации */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(60px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.hero,
+.gallery,
+.love,
+#letter{
+
+    animation:fadeUp 1.2s ease;
+
+}
+
+/* Сердечки */
+
+.heart{
+
+    position:fixed;
+
+    top:-30px;
+
+    color:#ff6ba8;
+
+    user-select:none;
+
+    pointer-events:none;
+
+    z-index:2;
+
+    animation-name:fall;
+
+    animation-timing-function:linear;
+
+}
+
+@keyframes fall{
+
+    0%{
+
+        transform:translateY(-10vh) rotate(0deg);
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:translateY(110vh) rotate(360deg);
+
+        opacity:0;
+
+    }
+
+}
+
+/* Красивое свечение */
+
+.hero::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+
+    height:500px;
+
+    background:#ff4f92;
+
+    filter:blur(180px);
+
+    opacity:.18;
+
+    border-radius:50%;
+
+    top:-150px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:-1;
+
+}
+
+.gallery::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:400px;
+
+    height:400px;
+
+    background:#8f5cff;
+
+    filter:blur(180px);
+
+    opacity:.15;
+
+    border-radius:50%;
+
+    right:-120px;
+
+    top:100px;
+
+}
+
+.love::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:350px;
+
+    height:350px;
+
+    background:#ff7ab8;
+
+    filter:blur(160px);
+
+    opacity:.18;
+
+    border-radius:50%;
+
+    left:-120px;
+
+    bottom:50px;
+
+}
+
+/* Адаптация */
+
+@media(max-width:900px){
+
+.hero h1{
+
+font-size:46px;
+
+}
+
+.subtitle{
+
+font-size:18px;
+
+}
+
+#timer{
+
+font-size:24px;
+
+}
+
+#letter{
+
+margin:70px 20px;
+
+padding:30px;
+
+}
+
+#letter p{
+
+font-size:18px;
+
+}
+
+.gallery h2,
+.love h2{
+
+font-size:36px;
+
+}
+
+button{
+
+width:90%;
+
+max-width:350px;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.hero{
+
+padding:20px;
+
+}
+
+.hero h1{
+
+font-size:34px;
+
+}
+
+.subtitle{
+
+font-size:16px;
+
+line-height:1.6;
+
+}
+
+#timer{
+
+font-size:20px;
+
+}
+
+.photos{
+
+grid-template-columns:1fr;
+
+}
+
+.cards{
+
+grid-template-columns:1fr;
+
+}
+
+.card{
+
+font-size:18px;
+
+}
+
+footer{
+
+font-size:18px;
+
+}
+
+}
