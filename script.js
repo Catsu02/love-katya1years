@@ -535,11 +535,11 @@ const card=document.createElement("div");
 
 card.className="card";
 
-card.innerHTML=`
-<h3 style="margin-bottom:15px;color:#ff8cc6;">
-Причина №${index+1}
-</h3>
-<p>${reason}</p>
+card.innerHTML = `
+    <h3 style="margin-bottom:15px;color:#ff8cc6;">
+        Причина №${index + 1}
+    </h3>
+    <p>${reason}</p>
 `;
 
 reasonsContainer.appendChild(card);
