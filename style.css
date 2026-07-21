@@ -641,4 +641,48 @@ font-size:18px;
 
 }
 
+}/* ==========================
+   Кнопка наверх
+========================== */
+
+#topButton{
+
+position:fixed;
+
+right:30px;
+
+bottom:30px;
+
+width:60px;
+
+height:60px;
+
+border-radius:50%;
+
+font-size:24px;
+
+border:none;
+
+cursor:pointer;
+
+background:#ff4f92;
+
+color:white;
+
+box-shadow:0 10px 30px rgba(255,80,170,.4);
+
+opacity:0;
+
+pointer-events:none;
+
+transition:.4s;
+
+z-index:9999;
+
+}
+
+#topButton:hover{
+
+transform:scale(1.1);
+
 }
